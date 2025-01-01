@@ -1,0 +1,65 @@
+sudo apt-get update
+sudo apt-get install -y gnupg software-properties-common curl
+curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo gpg --dearmor -o /usr/share/keyrings/hashicorp-archive-keyring.gpg
+echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/hashicorp.list
+sudo apt-get update
+sudo apt-get install terraform
+terraform -version
+
+Create a folder terraform
+mkdir terraform
+cd terraform/
+vi main.tf---> tf extension is must needed
+
+provider "aws" {
+  region = "us-west-1"
+}
+
+resource "aws_vpc" "my_vpc" {
+  cidr_block = "10.0.0.0/16"
+
+  tags = {
+    Name = "MyVPC"
+  }
+}
+
+resource "aws_subnet" "my_subnet" {
+  vpc_id                   = aws_vpc.my_vpc.id
+  cidr_block               = "10.0.1.0/24"
+  availability_zone        = "us-west-1a"
+  map_public_ip_on_launch  = true
+
+  tags = {
+    Name = "MySubnet"
+  }
+}
+
+resource "aws_instance" "web" {
+  ami           = "ami-014d05e6b24240371"
+  instance_type = "t2.micro"
+  subnet_id     = aws_subnet.my_subnet.id
+
+  tags = {
+    Name = "web"
+  }
+}
+
+ls -a
+.  ..  .terraform  .terraform.lock.hcl  main.tf
+terraform init
+terraform validate
+terraform plan
+terraform apply
+
+we have to give AWS Access to Terraform
+Create role as TerraformRole and we need to add this role to Terraform EC2 Server  Actions>>Security>>Modify IAM Role
+
+ls
+main.tf  terraform.tfstate--- state file very important
+terraform destroy -- to delete the infra.
+
+
+
+
+
+
