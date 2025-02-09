@@ -1,3 +1,22 @@
 Terraform
 ---------------
 Terraform is an infrastructure as code(IaC) tool allows you to build, change, and version infrastructure safely and efficiently.
+Always terraform extention file is in the form of .tf
+------------------------
+Components of Terraform
+------------------------
+-Providers-AWS,AZURE,Google Cloud Platform,Alibaba Cloud,Oracle Cloud.
+-Resources
+-Variables
+-Statefile-After the deployment is finished terraform creates a state file to keep track of current state of the infrastructure.
+          -It will use this file to compare when you deploy/destroy resources, in other words it compares "current state" with "desired state" using this file.
+          -A file with a name of "terraform.tfstate" will be created in your working directory.
+-Provisioners
+-Backends
+-Modules
+-Data Sources
+-Service Principals
+------------------------
+Providers
+------------------------
+Terraform relies on plugins called "providers" to interact with cloud providers, Saas providers.and other APIs.
