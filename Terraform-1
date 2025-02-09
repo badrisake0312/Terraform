@@ -20,3 +20,9 @@ Components of Terraform
 Providers
 ------------------------
 Terraform relies on plugins called "providers" to interact with cloud providers, Saas providers.and other APIs.
+
+Commands
+--------------
+terraform init
+terraform plan
+terraform apply
