@@ -15,7 +15,14 @@ Components of Terraform
 -Backends
 -Modules
 -Data Sources
+ If you deploy your resources out of terraform and use them in your terraform code the way you use them through "data sources".
+ Data sources in terraform are used to get information about resources external to terraform, and use them to set up your terraform resources.
 -Service Principals
+
+Restoring statefile
+- if the statefile is delected or corrupted, we can restore it using terraform import command
+ terraform import <terraform resource name> <resource id>
+Terraform Backend or Remote state
 ------------------------
 Providers
 ------------------------
@@ -25,4 +32,13 @@ Commands
 --------------
 terraform init
 terraform plan
+terraform validate
 terraform apply
+terraform destroy
+--------------
+workspaces
+--------------
+terraform workspace list
+terraform workspace new dev
+terraform workspace select dev
+terraform workspace show
