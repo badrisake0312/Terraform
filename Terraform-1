@@ -42,3 +42,6 @@ terraform workspace list
 terraform workspace new dev
 terraform workspace select dev
 terraform workspace show
+-----------------------------
+terraform fmt --> format into reading 
+
